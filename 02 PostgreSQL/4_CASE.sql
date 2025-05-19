@@ -74,8 +74,42 @@ WHERE
 ORDER BY
     yearly_salary ASC;
 
+----
 
 
+
+SELECT
+    COUNT(job_id) AS number_of_jobs,
+    CASE
+        WHEN salary_year_avg > 100000 THEN 'High Salary'
+        WHEN salary_year_avg BETWEEN 80000 AND 100000 THEN 'Standard Salary'
+        ELSE 'Low Salary'
+    END AS salary_category
+
+FROM
+    job_postings_fact
+
+GROUP BY
+    salary_category
+ORDER BY
+    number_of_jobs DESC;
+
+---
+SELECT
+    ROUND(AVG(salary_year_avg),2) AS salary,
+    CASE
+        WHEN salary_year_avg > 100000 THEN 'High Salary'
+        WHEN salary_year_avg BETWEEN 80000 AND 100000 THEN 'Standard Salary'
+        ELSE 'Low Salary'
+    END AS salary_category
+
+FROM
+    job_postings_fact
+
+GROUP BY
+    salary_category
+ORDER BY
+    salary DESC;
 
 
 
