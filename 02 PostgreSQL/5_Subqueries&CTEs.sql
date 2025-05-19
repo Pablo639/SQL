@@ -57,11 +57,13 @@ WHERE
 
 SELECT  
     company_id,
-    COUNT(*)
+    COUNT(*) AS total_jobs
 FROM
     job_postings_fact
 GROUP BY
     company_id
+ORDER BY
+    total_jobs DESC;
 
 
 -- Now we want the name of the company. We use WITH in order to build a temporary table with the data we need.
